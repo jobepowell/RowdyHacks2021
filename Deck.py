@@ -19,6 +19,5 @@ class Deck:
         for x in self.cards:
             self.cards[x] = True
 
->>>>>>> 3096dafe049dfb9b613efe1b05564612f02b7395
 
 
