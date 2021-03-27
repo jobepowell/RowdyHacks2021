@@ -1,4 +1,4 @@
 class Card:
     def __init__(self,r,s):
-        rank = r
-        suit = s
+        self.rank = r
+        self.suit = s
