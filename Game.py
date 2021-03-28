@@ -66,7 +66,7 @@ class Game:
     #play a hand of poker
     def playHand(self){
         #add players to hand
-        for p in self.players;
+        for p in self.players:
             if p.active == True:
                 self.playerBets.append([p, 0])
                 self.drawFromDeck(deck, 2)
