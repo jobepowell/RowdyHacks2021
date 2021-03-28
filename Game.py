@@ -8,7 +8,7 @@ class Game:
     def __init__(self):
         #initialize 52 card no-order deck
         self.deck = Deck.Deck()
-    
+
         #create list for players
         self.players = []
 
@@ -26,15 +26,15 @@ class Game:
         self.players.append(Player.Player(num))
 
     #drops first instance of targetPlayer found in players
-    def dropPlayer(self, targetPlayer){
+    def dropPlayer(self, targetPlayer):
         for p in self.players:
-            if p = targetPlayer:
+            if p == targetPlayer:
                 self.players.drop(p)
                 return
-   
+
     def drawFromDeck(player, number):
         for n in range(0, number):
-            player.addCard(deck.draw())
+            player.addCard(self.deck.draw())
 
 
     #do a betting round
@@ -48,42 +48,41 @@ class Game:
                 action = p[0].getInput()
                 if action == "f":
                     self.pot[0] += p[1]
-                    p[1] = -1    
-                else
+                    p[1] = -1
+                else:
                     p[0].balance -= action
                     playerbet[1] += action
                     if p[1] > requiredBet:
                         requiredBet = p[1]
                         stopPoint = i
-            if stopPoint = -1:
+            if stopPoint == -1:
                 stopPoint = 0
-            i++          
-            
+            i+=1
 
 
-            
-    
+
     #play a hand of poker
-    def playHand(self){
+    def playHand(self):
         #add players to hand
         for p in self.players:
             if p.active == True:
                 self.playerBets.append([p, 0])
-                self.drawFromDeck(deck, 2)
-
+                self.drawFromDeck(p, 2)
+"""
         #deal cards to players
         for p in self.players:
             if p.active == True:
-        
+               self.drawFromDeck(p, 2)    
+"""
         #round of betting
-        bettingRound()
+        self.bettingRound()
 
         #three cards to table
         for i in range(0, 3):
             self.table.append(self.deck.Draw())
         #round of betting
-        bettingRound()
- 
+        self.bettingRound()
+
         #1 card to table
         self.table.append(self.deck.Draw())
         #round of betting
@@ -92,5 +91,5 @@ class Game:
         self.table.append(self.deck.Draw())
         #round of betting
         bettingRound()
-  
+
         #determine winners and award pot
