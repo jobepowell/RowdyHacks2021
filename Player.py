@@ -4,6 +4,7 @@ class Player:
     def __init__(self, startBalance):
         self.balance = startBalance
         self.hand = []
+        self.active = True
     
     #add card to hand
     def addCard(self, card):
@@ -32,5 +33,13 @@ class Player:
     def subBalance(self, amount):
         self.balance -= amount
 
-
-        
+    #get user input in single player 
+    def getInput():
+        wait = True
+        while(wait):
+            print("Enter an amount to bet or press f to fold")
+            input = readline()
+            if input == "f" or input.isdigit():
+                return input
+            else
+                print("Invalid input")

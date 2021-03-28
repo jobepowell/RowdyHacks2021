@@ -2,6 +2,9 @@ import Deck
 import Card
 import Player
 #import Hand
+
+#TEST CODE
+"""
 #Before Game Setup
 #potSize = 0 #Size of the current pot
 deck = Deck.Deck()
@@ -19,3 +22,10 @@ for i in range(0,2):
 for i  in range(0,2):
     print(player1.hand[i].rank+" "+player1.hand[i].suit, end = ", ")
 print()
+"""
+
+#test code for Game class
+myGame = Game.Game()
+myGame.addPlayer(500)
+while readline()!="exit":
+    myGame.PlayHand
