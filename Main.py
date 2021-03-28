@@ -1,6 +1,7 @@
 import Deck
 import Card
 import Player
+import Game
 #import Hand
 
 #TEST CODE
@@ -27,5 +28,5 @@ print()
 #test code for Game class
 myGame = Game.Game()
 myGame.addPlayer(500)
-while readline()!="exit":
-    myGame.PlayHand
+while input()!="exit":
+    myGame.playHand()

@@ -41,5 +41,5 @@ class Player:
             input = readline()
             if input == "f" or input.isdigit():
                 return input
-            else
+            else:
                 print("Invalid input")
