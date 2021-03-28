@@ -37,8 +37,8 @@ class Player:
     def getInput(self):
         wait = True
         while(wait):
-            input = input("Enter an amount to bet or press f to fold")
-            if input == "f" or input.isdigit():
-                return input
+            bet = input("Enter an amount to bet or press f to fold ")
+            if bet == "f" or bet.isdigit():
+                return bet
             else:
                 print("Invalid input")

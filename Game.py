@@ -32,7 +32,7 @@ class Game:
                 self.players.drop(p)
                 return
 
-    def drawFromDeck(player, number):
+    def drawFromDeck(self, player, number):
         for n in range(0, number):
             player.addCard(self.deck.draw())
 
@@ -42,16 +42,16 @@ class Game:
         requiredBet = 0
         i = 0
         stopPoint = -1
-        while(i % self.playerBets.count() != stopPoint):
-            p = self.playerBets[i % self.playerBets.count()]
+        while(i % len(self.playerBets) != stopPoint):
+            p = self.playerBets[i % len(self.playerBets)]
             if p[1] != -1:
                 action = p[0].getInput()
                 if action == "f":
                     self.pot[0] += p[1]
                     p[1] = -1
                 else:
-                    p[0].balance -= action
-                    playerbet[1] += action
+                    p[0].balance -= int(action)
+                    self.playerBets[0][1] += int(action)
                     if p[1] > requiredBet:
                         requiredBet = p[1]
                         stopPoint = i
@@ -68,28 +68,53 @@ class Game:
             if p.active == True:
                 self.playerBets.append([p, 0])
                 self.drawFromDeck(p, 2)
-"""
+        """
         #deal cards to players
         for p in self.players:
             if p.active == True:
                self.drawFromDeck(p, 2)    
-"""
+        """
         #round of betting
         self.bettingRound()
 
         #three cards to table
         for i in range(0, 3):
-            self.table.append(self.deck.Draw())
+            self.table.append(self.deck.draw())
+        print("Your hand: ")
+        for i in self.players[0].hand:
+            print("| " + i.rank + " " + i.suit, end=" | ")
+        print()
+        print("On the table: ")
+        for i in self.table:
+            print("| " + i.rank + " " + i.suit, end=" | ")
+        print()
+
         #round of betting
         self.bettingRound()
 
         #1 card to table
-        self.table.append(self.deck.Draw())
+        self.table.append(self.deck.draw())
+        print("Your hand: ")
+        for i in self.players[0].hand:
+            print("| " + i.rank + " " + i.suit, end=" | ")
+        print()
+        print("On the table: ")
+        for i in self.table:
+            print("| " + i.rank + " " + i.suit, end=" | ")
+        print()
         #round of betting
-        bettingRound()
+        self.bettingRound()
          #1 card to table
-        self.table.append(self.deck.Draw())
+        self.table.append(self.deck.draw())
+        print("Your hand: ")
+        for i in self.players[0].hand:
+            print("| " + i.rank + " " + i.suit, end=" | ")
+        print()
+        print("On the table: ")
+        for i in self.table:
+            print("| " + i.rank + " " + i.suit, end=" | ")
+        print()
         #round of betting
-        bettingRound()
+        self.bettingRound()
 
         #determine winners and award pot

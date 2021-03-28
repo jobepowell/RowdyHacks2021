@@ -29,4 +29,4 @@ print()
 myGame = Game.Game()
 myGame.addPlayer(500)
 while input()!="exit":
-    myGame.PlayHand
+    myGame.playHand()
