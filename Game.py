@@ -120,6 +120,7 @@ class Game:
         #reset game
         for p in self.playerBets:
             p[0].discardHand()
+        self.table.clear()
         self.deck.reset()
-        
+                
 
