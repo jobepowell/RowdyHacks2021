@@ -19,7 +19,7 @@ class Player:
     
     #discard whole hand
     def discardHard(self):
-        self.hand.clear();
+        self.hand.clear()
 
     #get the value of hand
     def getHand(self):
@@ -34,12 +34,11 @@ class Player:
         self.balance -= amount
 
     #get user input in single player 
-    def getInput():
+    def getInput(self):
         wait = True
         while(wait):
-            print("Enter an amount to bet or press f to fold")
-            input = readline()
-            if input == "f" or input.isdigit():
-                return input
+            bet = input("Enter an amount to bet or press f to fold ")
+            if bet == "f" or bet.isdigit():
+                return bet
             else:
                 print("Invalid input")
