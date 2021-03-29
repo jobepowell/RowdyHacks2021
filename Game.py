@@ -42,8 +42,8 @@ class Game:
         requiredBet = 0
         i = 0
         stopPoint = -1
-        while(i % self.playerBets.count() != stopPoint):
-            p = self.playerBets[i % self.playerBets.count()]
+        while(i % self.playerBets.len() != stopPoint):
+            p = self.playerBets[i % self.playerBets.len()]
             if p[1] != -1:
                 action = p[0].getInput()
                 if action == "f":
@@ -68,12 +68,12 @@ class Game:
             if p.active == True:
                 self.playerBets.append([p, 0])
                 self.drawFromDeck(p, 2)
-"""
+        """
         #deal cards to players
         for p in self.players:
             if p.active == True:
                self.drawFromDeck(p, 2)    
-"""        
+        """        
         #round of betting
         self.bettingRound()
 
