@@ -23,6 +23,8 @@ def rankHand(cards):
     cards.sort(key = lambda card: rankValue[card.rank] , reverse = True)
     #calucalte mode magnitue
     #determine if is a straight
+    for(c in cards in range(4:)):
+        if()
     #determine if is a flush
     #if straight AND flush
     #if mag(mode) = 3
@@ -30,5 +32,5 @@ def rankHand(cards):
     #if magnitute(mode) < 3 AND !straight AND !flush
         #if magnitude(mode) = 2
             #determine if two pair
-            
+
     return -1
