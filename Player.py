@@ -18,7 +18,7 @@ class Player:
                 return
     
     #discard whole hand
-    def discardHard(self):
+    def discardHand(self):
         self.hand.clear()
 
     #get the value of hand
