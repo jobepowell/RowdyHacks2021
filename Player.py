@@ -5,6 +5,7 @@ class Player:
         self.balance = startBalance
         self.hand = []
         self.active = True
+        self.handRank = []; # index 0:Highest rank, index 1: type of hand (ie straight, flush, pair)
     
     #add card to hand
     def addCard(self, card):
@@ -16,7 +17,16 @@ class Player:
             if a == card:
                 self.hand.remove(card)
                 return
-    
+
+    #Print's the player's highest rank hand
+    def printHandRank(self):
+        if self.handRank[1] == "High":
+            print(self.handRank[0] + " High")
+        elif self.handRank[1] == "Pair" or self.handRank[1] == "Three-of-a-Kind":
+            print(self.handRank[1] + " of " + self.handRank[0]+"\'s")
+        elif self.handRank[1] == "Flush" or self.handRank[1] == "Straight":
+            print(self.handRank[1] + ", " + self.handRank[0] + " high")
+
     #discard whole hand
     def discardHand(self):
         self.hand.clear()

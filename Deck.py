@@ -5,12 +5,18 @@ class Deck:
     def __init__(self):
         self.cards = {}
         #suit = ["Club", "Diamond", "Spade", "Heart"]
-        suit = ['\u2664', '\u2661', '\u2667', '\u2662']
-        rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
-        for s in suit:
-            for r in rank:
+        self.suit = ['\u2664', '\u2661', '\u2667', '\u2662']
+        self.rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+        for s in self.suit:
+            for r in self.rank:
                 card = Card.Card(r, s)
                 self.cards[card] = True
+
+    def getSuit(self): #self explanitory
+        return self.suit
+
+    def getRank(self): #self explanitory
+        return self.rank
 
     def draw(self): #Returns a card and removes it from the deck
         while True:

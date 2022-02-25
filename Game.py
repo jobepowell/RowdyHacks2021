@@ -1,6 +1,7 @@
 import Deck
 import Card
 import Player
+import Rank
 
 
 class Game:
@@ -117,7 +118,11 @@ class Game:
         print()
         #round of betting
         self.bettingRound()
-
+        for p in self.players:
+            currHand = self.table.copy()
+            currHand.extend(p.hand)
+            p.handRank = Rank.rankHand(currHand)
+            p.printHandRank()
         #determine winners and award pot
 
         #reset game
