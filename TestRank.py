@@ -7,12 +7,14 @@ import Deck
 loop = True
 cards = []
 deck = Deck.Deck()
-suitKey = ['C', 'D', 'S', 'H']
+suitKey = ['c', 'd', 's', 'h']
 suitDict = dict(zip(suitKey, deck.getRank()))
+
 while loop:
     prompt = input(
     '''
     Enter '0' to draw and rank a random hand.
+    Enter '1' to rank custom hand.
     Anything else will exit.
     '''
     )
@@ -34,8 +36,8 @@ while loop:
                 '''
                 Specify 5 card hand. 
                 Format as: <rank><suite>, <rank><suite>, <rank><suite>, <rank><suite>, <rank><suite>, 
-                rank codes: A, K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2
-                Suit codes: C, S, H, D 
+                rank codes: a, k q j, 10, 9, 8, 7, 6, 5, 4, 3, 2
+                Suit codes: c, s, d, h
                 '''
             )
             #covert to valid card
@@ -43,20 +45,22 @@ while loop:
             hand_string_list = hand_string.split(',')
             
             #check len == 5
-            if len(cards)==5:
+            if len(cards)<5:
                 #covert each string to card 
                 #remove whitespace
                 for s in hand_string_list:
                     s.replace(" ", "")
                     #add to cards
+                    c = Card.Card(s[:-1], suitDict.get(s[-1]))
+                    print(c.getAsStr())
                     cards.append(Card.Card(s[:-1], suitDict.get(s[-1])))
-                
+                print(rankHand(cards))
+                for c in cards:
+                    print(c.getAsStr(), end = ', ')
 
 
-
-        print(rankHand(cards))
-        for c in cards:
-            print(c.getAsStr(), end = ', ')
+            else:
+                print("Error, lenght < 5")            
 
         print()
         #clear list
