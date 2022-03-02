@@ -4,7 +4,7 @@ class Deck:
 
     def __init__(self):
         self.cards = {}
-        #suit = ["Club", "Diamond", "Spade", "Heart"]
+        #spade, heart, club, diamond
         self.suit = ['\u2664', '\u2661', '\u2667', '\u2662']
         self.rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
         for s in self.suit:

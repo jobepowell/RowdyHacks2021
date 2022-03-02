@@ -49,7 +49,7 @@ def rankHand(cards):
     #if straight AND flush
 
     if ranks.count(modeRank) == 4:
-        return [str(modeRank), "Three-of-a-Kind"]
+        return [str(modeRank), "Four-of-a-Kind"]
     if ranks.count(modeRank) == 3:
         return [str(modeRank),"Three-of-a-Kind"]
     elif ranks.count(modeRank) == 2:
@@ -57,4 +57,4 @@ def rankHand(cards):
     elif ranks.count(modeRank) == 1:
         return [str(modeRank), "High"]
 
-    return -1
+    return ["-1", "-1"]
