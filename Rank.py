@@ -1,6 +1,18 @@
 import Card
 #import operator
 
+handValueDict = {
+    8 : "Straight Flush",
+    7 : "Four-of-a-Kind",
+    6 : "Full House",
+    5 : "Flush",
+    4 : "Straight",
+    3 : "Three-of-a-Kind",
+    2 : "Two Pair",
+    1 : "Pair", 
+    0 : "High"
+}
+
 rankValue = {
     '2' : 0,
     '3' : 1,
@@ -25,6 +37,7 @@ def getRankFromRankVal(r):
 #Given list of Cards, determine highest ranking poker hand
 #return int coresponding to that hand
 def rankHand(cards):
+    handVal = -1
     ranks = []
     suits = []
     #sort hand from highest to lowest rank
@@ -36,25 +49,52 @@ def rankHand(cards):
         suits.append(card.suit)
     modeRank = max(ranks, key=ranks.count)
     modeSuit = max(suits, key=suits.count)
+    
     #determine if is a straight
     for r in rankVals:
         if r-1 in rankVals and r-2 in rankVals and r-3 in rankVals and r-4 in rankVals:
-            return [str(getRankFromRankVal(r)),"Straight"]
+            #set straight
+            if(handVal < 4):
+                handVal = 4
+                print("is stright") 
+            
 
     #determine if is a flush
     if suits.count(modeSuit) >= 5: #Flush if 5 cards of same suit
-        for card in cards: #Finds the highest card of the flush's suit
-            if card.suit == modeSuit:
-                return[str(card.rank),"Flush"]
-    #if straight AND flush
+        for i in range(len(cards)): #Finds the highest card of the flush's suit
+            if cards[i].getSuit() != modeSuit:
+                break
+            else:
+                if i == len(suits)-1:
+                    print("is Flush")
+                    if handVal == 4: #straight 
+                        handVal = 8 #set to straight flush
+                    else:
+                        handVal = 5 #set to flush
+
+    #test print
+    print("Ranks:", end=': ') 
+    for r in ranks:
+        print(r, end=',')
+    print()
+
 
     if ranks.count(modeRank) == 4:
-        return [str(modeRank), "Three-of-a-Kind"]
+        if handVal<7:
+            handVal=7
     if ranks.count(modeRank) == 3:
-        return [str(modeRank),"Three-of-a-Kind"]
+        if ranks.count(ranks[3])==2:
+            if handVal < 6:
+                handVal = 6
+        if handVal < 3:
+            handVal = 3
     elif ranks.count(modeRank) == 2:
-        return [str(modeRank), "Pair"]
+        if (ranks.count(rank[2])) == 2:
+            handVal=3
+        if handVal < 1:
+            handVal = 1
     elif ranks.count(modeRank) == 1:
-        return [str(modeRank), "High"]
+        if handVal < 0:
+            handVal = 0
 
-    return -1
+    return [str(modeRank), handValueDict[handVal]]

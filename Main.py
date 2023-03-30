@@ -28,5 +28,6 @@ print()
 #test code for Game class
 myGame = Game.Game()
 myGame.addPlayer(500)
-while input()!="exit":
+print("added Player")
+while input("enter 'exit' to exit game\n")!="exit":
     myGame.playHand()
