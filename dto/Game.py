@@ -1,7 +1,4 @@
-import Deck
-import Card
-import Player
-import Rank
+from dto import Deck, Card, Rank, Player
 
 
 class Game:

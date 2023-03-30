@@ -1,7 +1,5 @@
-import Deck
-import Card
-import Player
-import Game
+from dto import Game, Deck, Card, Player
+
 #import Hand
 
 #TEST CODE

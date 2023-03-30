@@ -1,7 +1,7 @@
 #test code for Rank.py
 
-from Rank import *
-import Deck
+from dto.Rank import *
+from dto import Deck
 
 #initialize vars, deck
 loop = True
