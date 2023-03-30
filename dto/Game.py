@@ -1,7 +1,4 @@
-import Deck
-import Card
-import Player
-import Rank
+from dto import Deck, Card, Rank, Player
 
 
 class Game:
@@ -84,6 +81,7 @@ class Game:
             print("| " + i.rank + " " + i.suit, end=" | ")
 
         print("pot: "+str(self.pot))
+
         print()
         print("On the table: ")
         for i in self.table:

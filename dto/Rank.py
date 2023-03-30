@@ -1,4 +1,5 @@
-import Card
+from dto import Card
+
 #import operator
 
 handValueDict = {
