@@ -90,3 +90,5 @@ while loop:
         print()
         #clear list
         cards.clear()
+        #added deck reset to prevent crashing after extended use
+        deck.reset()
