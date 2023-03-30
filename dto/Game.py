@@ -80,7 +80,7 @@ class Game:
         for i in self.players[0].hand:
             print("| " + i.rank + " " + i.suit, end=" | ")
         
-        print("pot: "+self.pot[])
+        print("pot: "+self.pot)
         print()
         print("On the table: ")
         for i in self.table:
