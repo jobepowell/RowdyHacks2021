@@ -39,11 +39,12 @@ def getRankFromRankVal(r):
 #return int coresponding to that hand
 def rankHand(cards):
     handVal = -1
-    ranks = []
-    suits = []
+    ranks = []  #list that holds ranks
+    suits = []  #list that holds suits
     #sort hand from highest to lowest rank
     cards.sort(key = lambda card: rankValue[card.rank] , reverse = True)
-    rankVals = [rankValue[o.rank] for o in cards] # list of cards ranks converted via rankValues dictionary
+    # list of cards ranks converted from rankValues dictionary
+    rankVals = [rankValue[o.rank] for o in cards] 
     #calucalte mode magnitue
     for card in cards:
         ranks.append(card.rank)
@@ -58,7 +59,7 @@ def rankHand(cards):
             if(handVal < 4):
                 handVal = 4
                 print("is stright") 
-            
+        
 
     #determine if is a flush
     if suits.count(modeSuit) >= 5: #Flush if 5 cards of same suit
@@ -79,11 +80,11 @@ def rankHand(cards):
         print(r, end=',')
     print()
 
-
-    if ranks.count(modeRank) == 4:
+     
+    if ranks.count(modeRank) == 4:#check for 4-of-a-kind
         if handVal<7:
             handVal=7
-    if ranks.count(modeRank) == 3:
+    if ranks.count(modeRank) == 3: #check for 3 chards of same rank
         if ranks.count(ranks[3])==2:
             if handVal < 6:
                 handVal = 6
@@ -91,7 +92,7 @@ def rankHand(cards):
             handVal = 3
     elif ranks.count(modeRank) == 2:
         if (ranks.count(ranks[2])) == 2:
-            handVal=3
+            handVal=2
         if handVal < 1:
             handVal = 1
     elif ranks.count(modeRank) == 1:
