@@ -16,10 +16,8 @@ class Game:
         #create list for table cards
         self.table = []
 
-        # List of players,bets that the player has made
+        #create list for player bets
         self.playerBets = []
-
-
 
     #initializes player with 0 balance adds player to list
     def addPlayer(self, num):
@@ -42,25 +40,37 @@ class Game:
         requiredBet = 0
         i = 0
         stopPoint = -1
+        #while stop point has not been reached
         while(i % len(self.playerBets) != stopPoint):
+            #p set to current betting player
             p = self.playerBets[i % len(self.playerBets)]
+            #if p is a vallid bettor
             if p[1] != -1:
+                #get input from current betting player
                 action = p[0].getInput()
+                #if current player folds
                 if action == "f":
+                    #currant player's bets are added to pot
                     self.pot[0] += p[1]
+                    #current player is no longer a valid bettor
                     p[1] = -1
                 else:
+                    #current player's bet is duducted from the ballance
                     p[0].balance -= int(action)
+                    #player's bet is added to their amount bet
+                    self.playerBets[0][1] += int(action)
+                    #if bt is greater than required bet
                     self.playerBets[i][1] += int(action)
                     self.pot[0] += int(action)
                     if p[1] > requiredBet:
+                        #requred bet set
                         requiredBet = p[1]
+                        #stop point is now set to the current player
                         stopPoint = i
+            #stopPoint intially set to -1 to avoid initial check of <if 0 !=0>
             if stopPoint == -1:
                 stopPoint = 0
             i+=1
-
-
 
     #play a hand of poker
     def playHand(self):
@@ -103,7 +113,9 @@ class Game:
         for i in self.table:
             print("| " + i.rank + " " + i.suit, end=" | ")
         print()
-        print("pot: "+ str(self.pot))
+        print("On the table: ")
+        for i in self.table:
+            print("| " + i.rank + " " + i.suit, end=" | ")
         print()
 
     def printHand(self):
@@ -124,3 +136,12 @@ class Game:
             currHand.extend(p.hand)
             p.handRank = Rank.rankHand(currHand)
             p.printHandRank()
+        #determine winners and award pot
+
+        #reset game
+        for p in self.playerBets:
+            p[0].discardHand()
+        self.table.clear()
+        self.deck.reset()
+                
+
