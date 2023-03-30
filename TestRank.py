@@ -90,7 +90,3 @@ while loop:
         print()
         #clear list
         cards.clear()
-
-
-
-
