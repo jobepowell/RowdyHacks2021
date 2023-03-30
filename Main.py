@@ -2,6 +2,7 @@ from dto import Game, Deck, Card, Player
 
 def main():
     myGame = Game.Game()
+    myGame.addPlayer(500)
     gamenum = 1
     cont = True
     while cont:
@@ -13,3 +14,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

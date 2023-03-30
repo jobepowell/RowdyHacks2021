@@ -113,9 +113,7 @@ class Game:
         for i in self.table:
             print("| " + i.rank + " " + i.suit, end=" | ")
         print()
-        print("On the table: ")
-        for i in self.table:
-            print("| " + i.rank + " " + i.suit, end=" | ")
+        print("Current Pot:" + str(self.pot))
         print()
 
     def printHand(self):
@@ -136,12 +134,3 @@ class Game:
             currHand.extend(p.hand)
             p.handRank = Rank.rankHand(currHand)
             p.printHandRank()
-        #determine winners and award pot
-
-        #reset game
-        for p in self.playerBets:
-            p[0].discardHand()
-        self.table.clear()
-        self.deck.reset()
-                
-
