@@ -16,8 +16,10 @@ class Game:
         #create list for table cards
         self.table = []
 
-        #create list for player bets
+        # List of players,bets that the player has made
         self.playerBets = []
+
+
 
     #initializes player with 0 balance adds player to list
     def addPlayer(self, num):
@@ -49,7 +51,8 @@ class Game:
                     p[1] = -1
                 else:
                     p[0].balance -= int(action)
-                    self.playerBets[0][1] += int(action)
+                    self.playerBets[i][1] += int(action)
+                    self.pot[0] += int(action)
                     if p[1] > requiredBet:
                         requiredBet = p[1]
                         stopPoint = i
@@ -57,76 +60,67 @@ class Game:
                 stopPoint = 0
             i+=1
 
+
+
     #play a hand of poker
     def playHand(self):
-        #add players to hand
+        # Flop
+        self.dealPlayers()
+        self.bettingRound()
+        self.drawCard(3)
+        self.printHand()
+        self.printTable()
+
+        # Turn
+        self.bettingRound()
+        self.drawCard(1)
+        self.printHand()
+        self.printTable()
+        self.bettingRound()
+
+        # River
+        self.drawCard(1)
+        self.printHand()
+        self.printTable()
+        self.bettingRound()
+
+        # End-Game
+        self.decideWinner()
+        self.resetTable()
+
+    def drawCard(self, numCards):
+        for i in range(0, numCards):
+            self.table.append(self.deck.draw())
+
+    def dealPlayers(self):
         for p in self.players:
             if p.active == True:
                 self.playerBets.append([p, 0])
                 self.drawFromDeck(p, 2)
-        """
-        #deal cards to players
-        for p in self.players:
-            if p.active == True:
-               self.drawFromDeck(p, 2)    
-        """
-        #round of betting
-        self.bettingRound()
 
-        #three cards to table
-        for i in range(0, 3):
-            self.table.append(self.deck.draw())
-        print("Your hand: ")
-        for i in self.players[0].hand:
-            print("| " + i.rank + " " + i.suit, end=" | ")
-
-        print("pot: "+str(self.pot))
-
-        print()
-        print("On the table: ")
-        for i in self.table:
-            print("| " + i.rank + " " + i.suit, end=" | ")
-       
-        print()
-
-        #round of betting
-        self.bettingRound()
-
-        #1 card to table
-        self.table.append(self.deck.draw())
-        print("Your hand: ")
-        for i in self.players[0].hand:
-            print("| " + i.rank + " " + i.suit, end=" | ")
-        print()
+    def printTable(self):
         print("On the table: ")
         for i in self.table:
             print("| " + i.rank + " " + i.suit, end=" | ")
         print()
-        #round of betting
-        self.bettingRound()
-         #1 card to table
-        self.table.append(self.deck.draw())
+        print("pot: "+ str(self.pot))
+        print()
+
+    def printHand(self):
         print("Your hand: ")
         for i in self.players[0].hand:
             print("| " + i.rank + " " + i.suit, end=" | ")
         print()
-        print("On the table: ")
-        for i in self.table:
-            print("| " + i.rank + " " + i.suit, end=" | ")
-        print()
-        #round of betting
-        self.bettingRound()
+
+    def resetTable(self):
+        for p in self.playerBets:
+            p[0].discardHand()
+        self.table.clear()
+        self.deck.reset()
+
+    def decideWinner(self):
         for p in self.players:
             currHand = self.table.copy()
             currHand.extend(p.hand)
             p.handRank = Rank.rankHand(currHand)
             p.printHandRank()
-        #determine winners and award pot
-
-        #reset game
-        for p in self.playerBets:
-            p[0].discardHand()
-        self.table.clear()
-        self.deck.reset()
-                
-
