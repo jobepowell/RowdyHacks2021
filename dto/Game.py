@@ -40,19 +40,32 @@ class Game:
         requiredBet = 0
         i = 0
         stopPoint = -1
+        #while stop point has not been reached
         while(i % len(self.playerBets) != stopPoint):
+            #p set to current betting player
             p = self.playerBets[i % len(self.playerBets)]
+            #if p is a vallid bettor
             if p[1] != -1:
+                #get input from current betting player
                 action = p[0].getInput()
+                #if current player folds
                 if action == "f":
+                    #currant player's bets are added to pot
                     self.pot[0] += p[1]
+                    #current player is no longer a valid bettor 
                     p[1] = -1
                 else:
+                    #current player's bet is duducted from the ballance
                     p[0].balance -= int(action)
+                    #player's bet is added to their amount bet 
                     self.playerBets[0][1] += int(action)
+                    #if bt is greater than required bet
                     if p[1] > requiredBet:
+                        #requred bet set 
                         requiredBet = p[1]
+                        #stop point is now set to the current player
                         stopPoint = i
+            #stopPoint intially set to -1 to avoid initial check of <if 0 !=0>
             if stopPoint == -1:
                 stopPoint = 0
             i+=1
