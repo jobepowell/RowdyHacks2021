@@ -89,7 +89,7 @@ def rankHand(cards):
         if handVal < 3:
             handVal = 3
     elif ranks.count(modeRank) == 2:
-        if (ranks.count(rank[2])) == 2:
+        if (ranks.count(ranks[2])) == 2:
             handVal=3
         if handVal < 1:
             handVal = 1
