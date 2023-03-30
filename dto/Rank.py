@@ -84,18 +84,18 @@ def rankHand(cards):
     if ranks.count(modeRank) == 4:#check for 4-of-a-kind
         if handVal<7:
             handVal=7
-    if ranks.count(modeRank) == 3: #check for 3 chards of same rank
+    if ranks.count(modeRank) == 3: #check if there are max 3 cards of same rank
         if ranks.count(ranks[3])==2:
             if handVal < 6:
                 handVal = 6
         if handVal < 3:
             handVal = 3
-    elif ranks.count(modeRank) == 2:
+    elif ranks.count(modeRank) == 2: #check if there are max 2 cards of same rank
         if (ranks.count(ranks[2])) == 2:
             handVal=2
         if handVal < 1:
             handVal = 1
-    elif ranks.count(modeRank) == 1:
+    elif ranks.count(modeRank) == 1:   #check if there are max 1 chard of same rank
         if handVal < 0:
             handVal = 0
 
