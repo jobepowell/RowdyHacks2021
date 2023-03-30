@@ -79,8 +79,9 @@ class Game:
         print("Your hand: ")
         for i in self.players[0].hand:
             print("| " + i.rank + " " + i.suit, end=" | ")
-        
-        print("pot: "+self.pot)
+
+        print("pot: "+str(self.pot))
+
         print()
         print("On the table: ")
         for i in self.table:
