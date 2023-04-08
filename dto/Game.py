@@ -74,25 +74,33 @@ class Game:
 
     #play a hand of poker
     def playHand(self):
-        # Flop
+        # Deal
         self.dealPlayers()
+        self.printHand()
         self.bettingRound()
+        #print(self.playerBets)
+
+        #Flop
         self.drawCard(3)
         self.printHand()
         self.printTable()
+        self.bettingRound()
+        #print(self.playerBets)
+        
 
         # Turn
-        self.bettingRound()
         self.drawCard(1)
         self.printHand()
         self.printTable()
         self.bettingRound()
+        #print(self.playerBets)
 
         # River
         self.drawCard(1)
         self.printHand()
         self.printTable()
         self.bettingRound()
+        #print(self.playerBets)
 
         # End-Game
         self.decideWinner()
@@ -127,10 +135,16 @@ class Game:
             p[0].discardHand()
         self.table.clear()
         self.deck.reset()
+        self.playerBets=[]
 
     def decideWinner(self):
+        #hold list of winning hands0
+        
+        winningPlayers = []
+        maxRank=-1
         for p in self.players:
             currHand = self.table.copy()
             currHand.extend(p.hand)
             p.handRank = Rank.rankHand(currHand)
-            p.printHandRank()
+            #p.printHandRank()
+            print(p.handRank)

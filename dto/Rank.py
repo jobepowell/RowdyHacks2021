@@ -99,4 +99,5 @@ def rankHand(cards):
         if handVal < 0:
             handVal = 0
 
-    return [str(modeRank), handValueDict[handVal]]
+    #return [str(modeRank), handValueDict[handVal]]
+    return [rankValue[modeRank], handVal]
