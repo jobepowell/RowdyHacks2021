@@ -75,11 +75,12 @@ def rankHand(cards):
                         handVal = 5 #set to flush
 
     #test print
+    '''
     print("Ranks:", end=': ') 
     for r in ranks:
         print(r, end=',')
     print()
-
+    '''
      
     if ranks.count(modeRank) == 4:#check for 4-of-a-kind
         if handVal<7:
@@ -100,4 +101,4 @@ def rankHand(cards):
             handVal = 0
 
     #return [str(modeRank), handValueDict[handVal]]
-    return [rankValue[modeRank], handVal]
+    return (handVal, rankValue[modeRank]) 
