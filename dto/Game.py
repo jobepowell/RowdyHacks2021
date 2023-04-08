@@ -1,4 +1,4 @@
-from dto import Deck, Card, Rank, Player
+from . import Deck, Card, Rank, Player
 
 
 class Game:
@@ -20,8 +20,8 @@ class Game:
         self.playerBets = []
 
     #initializes player with 0 balance adds player to list
-    def addPlayer(self, num):
-        self.players.append(Player.Player(num))
+    def addPlayer(self, name):
+        self.players.append(Player.Player(name, 500))
 
     #drops first instance of targetPlayer found in players
     def dropPlayer(self, targetPlayer):
@@ -74,19 +74,16 @@ class Game:
 
     #play a hand of poker
     def playHand(self):
-        # Deal
-        self.dealPlayers()
-        self.printHand()
-        self.bettingRound()
-        #print(self.playerBets)
+        playerNames = ["Me","Foo"]
+        for i in range(0,2):
+            self.addPlayer(playerNames[i])
 
-        #Flop
+        # Flop
+        self.dealPlayers()
         self.drawCard(3)
         self.printHand()
         self.printTable()
         self.bettingRound()
-        #print(self.playerBets)
-        
 
         # Turn
         self.drawCard(1)
@@ -134,6 +131,7 @@ class Game:
         for p in self.playerBets:
             p[0].discardHand()
         self.table.clear()
+        self.pot = 0
         self.deck.reset()
         self.playerBets=[]
 
@@ -143,6 +141,7 @@ class Game:
         winningPlayers = []
         maxRank=-1
         for p in self.players:
+            print("({})\'s hand: ".format(p.name))
             currHand = self.table.copy()
             currHand.extend(p.hand)
             p.handRank = Rank.rankHand(currHand)

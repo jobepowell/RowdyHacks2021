@@ -2,7 +2,8 @@ from dto import Card
 
 
 class Player:
-    def __init__(self, startBalance):
+    def __init__(self, name, startBalance):
+        self.name = name
         self.balance = startBalance
         self.hand = []
         self.active = True
@@ -48,7 +49,7 @@ class Player:
     def getInput(self):
         wait = True
         while(wait):
-            bet = input("Enter an amount to bet or press f to fold ")
+            bet = input("({}) Enter an amount to bet or press f to fold ".format(self.name))
             if bet == "f" or bet.isdigit():
                 return bet
             else:
