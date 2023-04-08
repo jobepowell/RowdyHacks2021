@@ -137,13 +137,28 @@ class Game:
 
     def decideWinner(self):
         #hold list of winning hands0
-        
+        #print(self.players)      
         winningPlayers = []
-        maxRank=-1
+        maxRank=(-1,-1)
         for p in self.players:
             print("({})\'s hand: ".format(p.name))
             currHand = self.table.copy()
             currHand.extend(p.hand)
             p.handRank = Rank.rankHand(currHand)
             #p.printHandRank()
-            print(p.handRank)
+            #print(p.handRank)
+            if(p.handRank[0]>maxRank[0] or (p.handRank[0]==maxRank[0] and p.handRank[1]>maxRank[1])):
+                winningPlayers.clear()
+                winningPlayers.append(p)
+                maxRank=p.handRank
+            elif(p.handRank[0]==maxRank[0] and p.handRank[1]==maxRank[1]):
+                winningPlayers.append(p)
+            else:
+                false
+        if(len(winningPlayers)>1):
+            
+            #testPrint
+            print("Winning players:")
+            print(winningPlayers)
+            
+            #print("")
